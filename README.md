@@ -1,6 +1,5 @@
 # codingStudy
 python coding study
-으으 홍대용
-# 누구야 ㅡㅡ
 
-# Hello
+## 마크다운 
+https://heropy.blog/2017/09/30/markdown/
