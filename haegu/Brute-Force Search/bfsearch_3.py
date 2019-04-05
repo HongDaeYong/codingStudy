@@ -1,4 +1,5 @@
 # [완전탐색] 숫자야구
+#ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
 def solution(baseball):
     answer = 0
     for i in range(123, 988):

@@ -1,4 +1,5 @@
 # [완전탐색] 카펫
+##ㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇㅇ
 def solution(brown, red):
     answer = []
     width = brown + red
