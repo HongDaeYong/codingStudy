@@ -1,7 +1,7 @@
 def solution(brown, red):
     answer = []
     total=brown+red
-    r = list()
+    r = []
     for i in range(1, red+1):
         if (red%i) == 0 :
             r.append(i)
