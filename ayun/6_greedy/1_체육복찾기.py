@@ -1,11 +1,13 @@
 def solution(n, lost, reserve):
-    answer= n-len(lost)
-    for i in reserve:
-        if i-1 in lost:
-            reserve.remove(i)
+    answer= n-len(lost)+len(set(reserve)&set(lost))
+    rreserve=set(reserve)-set(lost)
+    llost=set(lost)-set(reserve)
+    z=[]
+    for i in rreserve:
+        if i-1 in llost and i-1 not in z:
+            z.append(i-1)
             answer+=1
-    for i in reserve:
-        if i+1 in lost:
-            reserve.remove(i)
+        elif i+1 in llost and i+1 not in z:
+            z.append(i+1)
             answer+=1
     return answer
