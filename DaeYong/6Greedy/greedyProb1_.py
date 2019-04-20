@@ -22,7 +22,7 @@ def solution(n, lost, reserve):
 
     n2N = [sum(x) for x in zip(n2N, lost2N, reserve2N)]
     for i in range(n-1):
-        if n2N[i] + n2N[i+1] >= 2:
+        if n2N[i] + n2N[i+1] >= 2: # 여기서 틀림. 앞에서 안빌려줫는데 1로 바꿈
             n2N[i] = 1
             n2N[i+1] = 1
     return sum(n2N)

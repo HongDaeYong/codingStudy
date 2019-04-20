@@ -1,16 +1,24 @@
+# def solution(n, costs):
+#     answer = 0
+#     connected = []
+#     costs.sort(key=lambda x: x[2])
+#     for cost in costs:
+#         if cost[0] not in connected or cost[1] not in connected:
+#             answer += cost[2]
+#             if cost[0] not in connected:
+#                 connected.append(cost[0])
+#             if cost[1] not in connected:
+#                 connected.append(cost[1])
+#     return answer
+
+
+# 프림 알고리즘 사용
 def solution(n, costs):
     answer = 0
-    tmpAns = 0
-    connected = []
-    costs.sort(key=lambda x: x[2])
-    for cost in costs:
-        if cost[0] not in connected or cost[1] not in connected:
-            answer += cost[2]
-            tmpAns += cost[2]
-            if cost[0] not in connected:
-                connected.append(cost[0])
-            if cost[1] not in connected:
-                connected.append(cost[1])
+    connected = [0]
+    for i in range(n-1):
+        # if
+        pass
     return answer
 
 

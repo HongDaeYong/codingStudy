@@ -23,14 +23,27 @@
 
 
 # 83.3 점
-def solution(number, k):
+def solution(number, k):  # 시간 엄청 줄여야함. 개빠른 진모형 코드도 시간초과남;;
     def one(num):
         for i in range(len(num)-1):
             if num[i] < num[i+1]:
                 return num.replace(num[i], '', 1)
     for _ in range(k):
         number = one(number)
-    return number
+    return number[:-(len(number))]
+
+
+# 찾은 정답 ;;; 개쩖;;;
+def solution(number, k):
+    stack = [number[0]]
+    for num in number[1:]:
+        while len(stack) > 0 and stack[-1] < num and k > 0:
+            k -= 1
+            stack.pop()
+        stack.append(num)
+    if k != 0:
+        stack = stack[:-k]
+    return ''.join(stack)
 
 
 inputs = [
