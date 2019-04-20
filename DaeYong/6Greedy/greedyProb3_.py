@@ -1,15 +1,14 @@
+# 90.9 점
 def solution(name):
     answer = 0
     alphabets = [alpha for alpha in name]
     notWritten = [1 for _ in range(len(name))]
-    distances = [0 for _ in range(len(name))]
 
     for i, alpha in enumerate(alphabets):
         if alpha == 'A':
             notWritten[i] = 0
         else:
-            distances[i] = min(abs(ord('A') - ord(alpha)), 26 - abs(ord('A') - ord(alpha)))
-            answer += distances[i]
+            answer += min(abs(ord('A') - ord(alpha)), 26 - abs(ord('A') - ord(alpha)))
     moveLeft = len(name) - notWritten.index(1) if notWritten[0] != 1 else len(name) - notWritten.index(1, 1)
     notWritten.reverse()
     moveRight = len(name) - notWritten.index(1)
