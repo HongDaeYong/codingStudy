@@ -10,13 +10,32 @@ def solution(name):
             notWritten[i] = 0
         else:
             answer += min(abs(ord('A') - ord(alpha)), 26 - abs(ord('A') - ord(alpha)))
-    moveLeft = len(name) - notWritten.index(1) if notWritten[0] != 1 else len(name) - notWritten.index(1, 1)
-    notWritten.reverse()
-    moveRight = len(name) - notWritten.index(1)
-    return answer + min(moveLeft, moveRight)
+    maxZeros = -1
+    maxZerosEndIdx = 0
+    tmpZeros = 0
+    for i, nW in enumerate(notWritten):
+        if nW == 0:
+            tmpZeros += 1
+            if maxZeros < tmpZeros:
+                maxZeros = tmpZeros
+                maxZerosEndIdx = i
+        else:
+            tmpZeros = 0
+    maxZerosStartIdx = maxZerosEndIdx - maxZeros + 1
+
+    if 2 * maxZerosStartIdx + (len(name) - maxZerosEndIdx) - 2 < maxZeros:
+        return answer + 2 * maxZerosStartIdx + (len(name) - maxZerosEndIdx) - 2
+    else:
+        moveLeft = len(name) - notWritten.index(1) if notWritten[0] != 1 else len(name) - notWritten.index(1, 1)
+        notWritten.reverse()
+        moveRight = len(name) - notWritten.index(1)
+        return answer + min(moveLeft, moveRight)
 
 
-inputs = ["JEROEN", "JAN"]
+inputs = [
+    # "JEROEN",
+    "JAN"
+]
 for inpt in inputs:
     print(solution(inpt))
 

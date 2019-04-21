@@ -17,8 +17,8 @@ def solution(n, costs):
     answer = 0
     connected = [0]
     for i in range(n-1):
-        # if
         pass
+
     return answer
 
 

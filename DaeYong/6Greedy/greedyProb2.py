@@ -23,14 +23,14 @@
 
 
 # 83.3 점
-def solution(number, k):  # 시간 엄청 줄여야함. 개빠른 진모형 코드도 시간초과남;;
-    def one(num):
-        for i in range(len(num)-1):
-            if num[i] < num[i+1]:
-                return num.replace(num[i], '', 1)
-    for _ in range(k):
-        number = one(number)
-    return number[:-(len(number))]
+# def solution(number, k):  # 시간 엄청 줄여야함. 개빠른 진모형 코드도 시간초과남;;
+#     def one(num):
+#         for i in range(len(num)-1):
+#             if num[i] < num[i+1]:
+#                 return num.replace(num[i], '', 1)
+#     for _ in range(k):
+#         number = one(number)
+#     return number[:-(len(number))]
 
 
 # 찾은 정답 ;;; 개쩖;;;
