@@ -23,8 +23,8 @@ def solution(name):
             tmpZeros = 0
     maxZerosStartIdx = maxZerosEndIdx - maxZeros + 1
 
-    if 2 * maxZerosStartIdx + (len(name) - maxZerosEndIdx) - 2 < maxZeros:
-        return answer + 2 * maxZerosStartIdx + (len(name) - maxZerosEndIdx) - 2
+    if 2 * (maxZerosStartIdx - 1) + (len(name) - maxZerosEndIdx - 1) < maxZeros and maxZerosStartIdx != 0 and maxZerosEndIdx != len(name) - 1:
+        return answer + 2 * (maxZerosStartIdx - 1) + (len(name) - maxZerosEndIdx - 1)
     else:
         moveLeft = len(name) - notWritten.index(1) if notWritten[0] != 1 else len(name) - notWritten.index(1, 1)
         notWritten.reverse()
@@ -34,7 +34,8 @@ def solution(name):
 
 inputs = [
     # "JEROEN",
-    "JAN"
+    # "JAN",
+    "BBAAAAAAAAAAZZ"
 ]
 for inpt in inputs:
     print(solution(inpt))
