@@ -14,6 +14,7 @@
 #                 clothes_mask[i] = 0
 #     return sum(clothes_mask)
 
+
 def solution(n, lost, reserve):
     n2N = [1 for _ in range(n)]
     lost2N = [-1 if i+1 in lost else 0 for i in range(n)]
