@@ -61,45 +61,61 @@
 #     #     for j in range(i+1,len(left)):
 
 # 50점
+# def solution(people, limit):
+#     people.sort(reverse=True)
+#     # minimum = 40
+#     # rescued = [1 if limit - minimum < person else 0 for person in people]
+#     # answer = sum(rescued)
+#     rescued = [0 for _ in people]
+#     answer = 0
+#
+#     if answer >= len(rescued):
+#         return answer
+#     else:
+#         while sum(rescued) < len(rescued):
+#             i = rescued.index(0)
+#             rescued.reverse()
+#             j = len(rescued) - 1 - rescued.index(0)
+#             rescued.reverse()
+#             if i == len(rescued) - 1 or (i != j and (people[i] + people[j]) > limit):
+#                 rescued[i] = 1
+#                 answer += 1
+#             else:
+#                 onBoardAlone = True
+#                 for k in range(i + 1, j + 1):
+#                     if rescued[k] != 1 and people[i] + people[k] <= limit:
+#                         rescued[i] = 1
+#                         rescued[k] = 1
+#                         answer += 1
+#                         onBoardAlone = False
+#                         break
+#                 if onBoardAlone:
+#                     rescued[i] = 1
+#                     answer = 1
+#     return answer
+
+
 def solution(people, limit):
     people.sort(reverse=True)
-    minimum = 40
-    rescued = [1 if limit - minimum < person else 0 for person in people]
-    answer = sum(rescued)
+    heavy = 0
+    light = len(people) - 1
 
-    if answer >= len(rescued):
-        return answer
-    else:
-        while sum(rescued) < len(rescued):
-            i = rescued.index(0)
-            rescued.reverse()
-            j = len(rescued) - 1 - rescued.index(0)
-            rescued.reverse()
-            if i == len(rescued) - 1 or (i != j and (people[i] + people[j]) > limit):
-                rescued[i] = 1
-                answer += 1
-            else:
-                onBoardAlone = True
-                for k in range(i + 1, j + 1):
-                    if rescued[k] != 1 and people[i] + people[k] <= limit:
-                        rescued[i] = 1
-                        rescued[k] = 1
-                        answer += 1
-                        onBoardAlone = False
-                        break
-                if onBoardAlone:
-                    rescued[i] = 1
-                    answer = 1
-
+    answer = 0
+    while heavy <= light:
+        if people[heavy] + people[light] <= limit:
+            light -= 1
+        heavy += 1
+        answer += 1
     return answer
 
 
 
 
 
+
 inputs = [
-    # ([70, 50, 80, 50], 100),
-    # ([70, 80, 50], 100),
+    ([70, 50, 80, 50], 100),
+    ([70, 80, 50], 100),
     ([100, 50, 40, 70, 90, 40, 40], 120)
 ]
 
