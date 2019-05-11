@@ -9,16 +9,23 @@ def solution(budgets, M):
         if sum > M:
             tail = mid
         else:
-            i = tail
-            while i >= mid:
-                sum = calculateSum(budgets, i)
+            head = mid
+            while True:
+                mid = int((head + tail) / 2)
+                sum = calculateSum(budgets, mid)
                 if sum < M:
-                    answer = i
-                    break
-                i -= 1
-            break
-
-    return answer
+                    head = mid
+                elif sum == M:
+                    return mid
+                else:
+                    i = tail
+                    while i >= head:
+                        sum = calculateSum(budgets, i)
+                        if sum < M:
+                            answer = i
+                            break
+                        i -= 1
+                    return answer
 
 def calculateSum(budgets, limit):
     sum = 0
