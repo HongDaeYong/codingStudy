@@ -1,19 +1,14 @@
-def solution(n, costs):
-    answer = 0
-    islands = [0]
+def solution(routes):
+    answer = 1
+    routes.sort()
+    m = 30001
     
-    for i in range(n-1):
-        a = 0
-        min_ = 99999999; 
-        for cost in costs :
-            if (cost[0] in islands) and (cost[1] not in islands) :
-                if cost[2] < min_ :
-                    a = cost[1]
-                    min_ = cost[2]
-            elif (cost[1] in islands) and (cost[0] not in islands) :
-                if cost[2] < min_ :
-                    a = cost[0]
-                    min_ = cost[2]
-        islands.append(a)
-        answer += min_   
+    for r in routes :
+        if r[0] > m :
+            answer += 1
+            m = r[1]
+        
+        if r[1] < m :
+            m = r[1]
+        
     return answer
