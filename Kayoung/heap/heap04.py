@@ -5,7 +5,7 @@ def solution(jobs):
     pq = []
     jobs_sorted = sorted(jobs, key=lambda job: (job[0], job[1]))
     total = 0
-    now = 0
+    now = jobs_sorted[0][0]
     for i in range(len(jobs_sorted)):
         job = jobs_sorted[i]
         heapq.heappush(pq, (now-job[0] + job[1], job)) # priority = wait_time + during_time // (priority, value)
@@ -19,3 +19,5 @@ def solution(jobs):
     total += now - job_picked[0] + job_picked[1]
     answer = int(total/len(jobs))
     return answer
+
+print(solution([[0, 3], [1, 9], [2, 6]]))
