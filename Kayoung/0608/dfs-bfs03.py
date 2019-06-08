@@ -23,23 +23,23 @@ def solution(begin, target, words):
 
     while(curQueue.qsize() != 0):
         nextQueue = queue.Queue()
+        distance += 1
+        print(curQueue.queue)
         while(curQueue.qsize() != 0):
             cur = curQueue.get()
-            print("cur : ", cur)
             for i in range(mapLen):
                 if changableMap[cur][i] == 1 and visit[i] == 0:
                     if words[i] == target:
                         return distance
                     nextQueue.put(i)
                     visit[i] = 1
-        distance += 1
         curQueue = nextQueue
     return 0
 
 
 def makeChangableMap(begin, words):
     mapLen = len(words) + 1
-    changableMap = [[0 for _ in range(mapLen)] for _ in range(mapLen)]  # words + begin + target
+    changableMap = [[0 for _ in range(mapLen)] for _ in range(mapLen)]  # words + begin
 
     for i in range(len(words)):
         for j in range(len(words)):
@@ -70,4 +70,4 @@ def isChangable(str1, str2):
     return False
 
 
-print(solution("hit", "dog", ["hot", "dot", "dog", "lot", "log", "cog"]))
+print(solution("hit", "cog", ["hot", "dot", "dog", "lot", "log", "cog"]))
