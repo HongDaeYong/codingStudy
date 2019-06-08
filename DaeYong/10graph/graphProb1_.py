@@ -1,7 +1,7 @@
 import numpy as np
 
 
-def dfs (grph, vis, i, j):
+def dfs(grph, vis, i, j):
     vis[i] = 1
     if i == j:
         return 0
@@ -16,8 +16,8 @@ def solution(n, edge):
     answer = 0
     graph = [[0 for _ in range(n)] for _ in range(n)]
     for e in edge:
-        graph[e[0], e[1]] = 1
-        graph[e[1], e[0]] = 1
+        graph[e[0]-1][e[1]-1] = 1
+        graph[e[1]-1][e[0]-1] = 1
 
     maxDistance = -1
     for node in range(n):
