@@ -16,9 +16,11 @@ def solution(relation):
         if len(keys) == 1:
             return relation_dict[keys[0]]
         tuples_list = []
-
-        pass
-
+        for i in range(num_row):
+            one_case = []
+            for key in keys:
+                one_case.append(relation_dict[key][i])
+            tuples_list.append(tuple(one_case))
         return tuples_list
 
     col_relation = {i: [] for i in range(num_col)}
@@ -32,14 +34,14 @@ def solution(relation):
 
             need_to_examine = True
             for ele in answer_list:
-                if set(keys).issubset(set(ele)):
+                if set(keys).issubset(set(ele)) or set(ele).issubset(set(keys)):
                     need_to_examine = False
 
             if need_to_examine:
                 combinations_list = make_tuples_list(col_relation, keys)
                 if checkIfUnique(combinations_list):
                     answer_list.append(keys)
-
+    print(answer_list)
     return len(answer_list)
 
 
