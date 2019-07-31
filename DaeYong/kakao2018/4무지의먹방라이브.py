@@ -3,13 +3,24 @@ def solution(food_times, k):
     if sum(food_times) <= k:
         return -1
 
+    food_times = np.array(food_times)
+
     def minimum(arr):
-        min = 1000000000
-        for a in arr:
-            if a != 0 and a < min:
-                min = a
-        return min
-    
+        return min(arr, key=lambda x: 100000001 if x == 0 else x)
+
+    def length(arr):
+        return sum(arr > 0)
+
+    def leastRounds(food_times, k):
+        eat = np.array([-1 if ft != 0 else 0 for ft in food_times])
+        numRound, left = divmod(k, length(food_times))
+        minRound = min(minimum(food_times), numRound)
+        food_times += minRound * eat
+        return food_times, (numRound - minRound) * length(food_times) + left
+
+    while k > length(food_times):
+        food_times, k = leastRounds(food_times, k)
+
 
 
 food_times = [3, 1, 2]
