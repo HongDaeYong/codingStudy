@@ -1,0 +1,26 @@
+import itertools
+
+def solution(relation):
+    n_column = len(relation[0])
+    n_row = len(relation)
+    cand_keys = []
+    
+    col = list(range(n_column))
+    for k in range(n_column):
+        for columns in itertools.combinations(col,k+1):
+            minimal = True
+            unique = True
+            data = [[i[j] for j in columns] for i in relation]
+            for row in data:                #유일성 체크
+                if data.count(row) > 1:
+                    unique = False
+                    break
+            if unique:     
+                for cand in cand_keys:      #최소성 체크
+                    if set(cand) < set(columns):
+                        minimal = False
+                        break
+                if minimal == True:
+                    cand_keys.append(columns)
+                    
+    return len(cand_keys)

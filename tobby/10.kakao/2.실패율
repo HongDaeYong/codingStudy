@@ -1,0 +1,15 @@
+def solution(N, stages):
+    answer = []
+    P = len(stages)
+
+    for i in range(N):
+        if P == 0:
+            answer.append([i+1,0])
+        else:
+            answer.append([i+1,stages.count(i+1)/P])
+            P -= stages.count(i+1)
+
+    answer.sort(key = lambda pair:-pair[1])
+    answer = [i[0] for i in answer]
+
+    return answer
