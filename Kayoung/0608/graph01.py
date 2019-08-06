@@ -17,11 +17,13 @@ def solution(n, edge):
             visit[i] = 1
             curQueue.put(i)
     distance = 1
+    cnt = 0
 
     while(curQueue.qsize() != 0):
         nextQueue = queue.Queue()
         distance += 1
         print(curQueue.queue)
+        cnt = curQueue.qsize()
         while(curQueue.qsize() != 0):
             cur = curQueue.get()
             for i in range(1, n):
@@ -29,6 +31,6 @@ def solution(n, edge):
                     nextQueue.put(i)
                     visit[i] = 1
         curQueue = nextQueue
-    return distance
+    return cnt
 
 print(solution(6, [[3, 6], [4, 3], [3, 2], [1, 3], [1, 2], [2, 4], [5, 2]]))
