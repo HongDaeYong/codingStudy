@@ -1,21 +1,37 @@
-import numpy as np
 def solution(food_times, k):
     if sum(food_times) <= k:
         return -1
+    elif len(food_times) > k:
+        return k
+    elif len(food_times) == k:
+        return 1
 
-    food_times = np.array(food_times)
-    length = sum(food_times > 0)
-    while k >= length:
-        numRound, left = divmod(k, length)
-        minRound = min(min(food_times, key=lambda x: 100000001 if x == 0 else x), numRound)
-        food_times += np.where(food_times == 0, 0, -minRound)
-        k = (numRound - minRound) * length + left
-        length = sum(food_times > 0)
-    return np.where(np.where(food_times > 0, 1, 0) == 1)[0][k] + 1
+    tmp_food_times = food_times.copy()
+    tmp_food_times.sort()
+
+    idx = 0
+    eat = 0
+    pivot = 0
+    while k >= 0:
+        pivot = tmp_food_times[idx]
+        eat = tmp_food_times[idx] * len(tmp_food_times) if idx == 0 else \
+            (tmp_food_times[idx] - tmp_food_times[idx-1]) * (len(tmp_food_times) - idx)
+        k -= eat
+        idx += 1
+    answer = 0
+    k += eat
+    while k >= 0:
+        if food_times[answer] >= pivot:
+            k -= 1
+        answer += 1
+        answer %= len(food_times)
+    return answer
+
 
 food_times = [3, 1, 2]
 k = 5
 print(solution(food_times, k))
+
 
 """"""
 # 정확성 만점, 효율성 1개 => 50.0점
