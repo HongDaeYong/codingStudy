@@ -1,35 +1,37 @@
 def solution(food_times, k):
-    if sum(food_times) <= k:
-        return -1
-    elif len(food_times) > k:
-        return k
-    elif len(food_times) == k:
-        return 1
-
     tmp_food_times = food_times.copy()
     tmp_food_times.sort()
 
-    idx = 0
-    eat = 0
-    pivot = 0
-    while k >= 0:
+    idx, eat, pivot = 0, 0, 0
+    for idx in range(len(tmp_food_times)):
         pivot = tmp_food_times[idx]
         eat = tmp_food_times[idx] * len(tmp_food_times) if idx == 0 else \
-            (tmp_food_times[idx] - tmp_food_times[idx-1]) * (len(tmp_food_times) - idx)
+            (tmp_food_times[idx] - tmp_food_times[idx - 1]) * (len(tmp_food_times) - idx)
         k -= eat
-        idx += 1
+        if k < 0:
+            break
+    if k > 0 and idx + 1 >= len(tmp_food_times):
+        return -1
+
     answer = 0
     k += eat
+    for i in range(idx, len(tmp_food_times)):
+        eat = tmp_food_times[idx] if idx == 0 else tmp_food_times[idx] - tmp_food_times[idx - 1]
+        k -= eat
+        if k < 0:
+            break
+    k += eat
+
     while k >= 0:
         if food_times[answer] >= pivot:
             k -= 1
         answer += 1
-        answer %= len(food_times)
-    return answer
+        answer %= (len(tmp_food_times) - idx)
+    return answer + 1
 
 
-food_times = [3, 1, 2]
-k = 5
+food_times = [3, 1, 2] #  [3,3,3,3,3,3,3] [5,4,2,3,1,5,4] [3, 1, 2]
+k = 5 # 15 5
 print(solution(food_times, k))
 
 
