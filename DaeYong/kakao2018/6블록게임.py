@@ -1,9 +1,19 @@
 import numpy as np
 
 
-def _check(shape, i, j, board):
-    for n in range(j, j+shape[1]):
-        for m in range(i):
+def _check(k, shape, i, j, board):
+    for m in range(i):
+        for n in range(j, j + shape[1]):
+            if k == 0 and n == j:
+                continue
+            elif k == 1 and n == j + 2:
+                continue
+            elif k == 2 and n == j:
+                continue
+            elif k == 3 and n == j + 1:
+                continue
+            elif k == 4 and n == j + 1:
+                continue
             if board[m][n] != 0:
                 return False
     return True
@@ -33,7 +43,7 @@ def may_delete_block(k, board, answer):
                     or (k == 2 and board[i][j] == board[i+1][j] == board[i+2][j] == board[i+2][j+1] != 0 and board[i][j+1] == board[i+1][j+1] == 0) \
                     or (k == 3 and board[i+2][j] == board[i][j+1] == board[i+1][j+1] == board[i+2][j+1] != 0 and board[i][j] == board[i+1][j] == 0) \
                     or (k == 4 and board[i][j+1] == board[i+1][j] == board[i+1][j+1] == board[i+1][j+2] != 0 and board[i][j] == board[i][j+2] == 0):
-                if _check(shape, i, j, board):
+                if _check(k, shape, i, j, board):
                     board = delete_block(shape, i, j, board)
                     answer += 1
                     return True, board, answer
